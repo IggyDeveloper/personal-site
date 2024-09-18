@@ -50,8 +50,8 @@
   <canvas
     class="w-full min-w-[20rem] max-w-[30rem]"
     title="my scuffed implementation of a mandelbulb"
-    width="800"
-    height="800"
+    width="650"
+    height="650"
     bind:this={renderCanvas}
   ></canvas>
 
