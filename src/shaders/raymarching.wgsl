@@ -77,7 +77,8 @@ fn calculate_normal(point: vec3f) -> vec3f {
 }
 
 fn mandelbulb(pos: vec3f, power: f32, bailout: f32, iterations: i32) -> f32 {
-    var rotatedPos = rotateY(uniforms.time * 0.2) * rotateX(0.3) * pos;
+    var mouseOffset = vec2f(uniforms.mouseX, uniforms.mouseY) / 10;
+    var rotatedPos = rotateY(mouseOffset.x + uniforms.time * 0.2) * rotateX(0.3 + mouseOffset.y) * pos;
 
     var z = rotatedPos;
     var dr = 2.0;
@@ -104,7 +105,7 @@ fn mandelbulb(pos: vec3f, power: f32, bailout: f32, iterations: i32) -> f32 {
 }
 
 fn map_scene(position: vec3f) -> f32 {
-    var power = 5.0 + abs(sin(uniforms.time / 10)) * 8.0;
+    var power = 5.0 + abs(sin( uniforms.time / 10)) * 8.0;
     return mandelbulb(position, power, 3.0, 4);
 }
 

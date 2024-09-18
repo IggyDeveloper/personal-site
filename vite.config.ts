@@ -1,15 +1,16 @@
-import { defineConfig } from "vite";
+import { sveltekit } from '@sveltejs/kit/vite';
+import { defineConfig } from 'vite';
 
 export default defineConfig({
   plugins: [
-    // Allow for wgsl shaders to be imported as modules
+    sveltekit(),
     {
-      name: "wgsl-loader",
+      name: 'wgsl-loader',
       transform(code, id) {
-        if (id.endsWith(".wgsl")) {
+        if (id.endsWith('.wgsl')) {
           return `export default ${JSON.stringify(code)};`;
         }
-      },
-    },
-  ],
+      }
+    }
+  ]
 });
