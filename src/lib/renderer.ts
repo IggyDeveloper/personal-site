@@ -69,7 +69,6 @@ export default class Renderer {
   }
 
   public async createShaderModule(code: string) {
-    console.log(code);
     return this.device.createShaderModule({ code });
   }
 

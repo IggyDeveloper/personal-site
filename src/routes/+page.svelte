@@ -17,9 +17,8 @@
       renderer.createVertexBuffer(PLANE_VERTICES);
 
       const shaderModule = await renderer.createShaderModule(shader);
-      console.log();
-
       renderer.createPipeline(shaderModule);
+
       requestAnimationFrame((time) => renderer.createRenderingPass(time));
     });
   });
