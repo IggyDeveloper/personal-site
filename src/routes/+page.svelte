@@ -29,21 +29,15 @@
   <section class="flex flex-col items-center gap-3 text-center">
     <h1 class="text-3xl">iggydev</h1>
 
-    <ul class="flex gap-3.5 text-blue-400">
+    <ul class="flex gap-3.5">
       <li>
-        <a href="./blog" class="underline hover:decoration-dotted">blog (coming eventually)</a>
+        <a href="/blog" class="link">blog (coming eventually)</a>
       </li>
       <li>
-        <a href="https://x.com/iggydev" target="_blank" class="underline hover:decoration-dotted"
-          >x dot com</a
-        >
+        <a href="https://x.com/iggydev" target="_blank" class="link">x dot com</a>
       </li>
       <li>
-        <a
-          href="https://github.com/IggyDeveloper"
-          target="_blank"
-          class="underline hover:decoration-dotted">github</a
-        >
+        <a href="https://github.com/IggyDeveloper" target="_blank" class="link">github</a>
       </li>
     </ul>
 
@@ -63,6 +57,6 @@
 
   <p class="text-neutral-300 text-center px-2 sm:p-0">
     this page has been brought to you as an orchestrated delusion by your mind (sorry I'm in my
-    <a href="wake-up" class="underline decoration-dotted decoration-red-500">solipsism</a> phase)
+    <a href="/wake-up" class="underline decoration-dotted decoration-red-500">solipsism</a> phase)
   </p>
 </main>

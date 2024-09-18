@@ -5,3 +5,9 @@
 body {
   font-family: 'Playfair Display', serif;
 }
+
+@layer base {
+  .link {
+    @apply text-blue-400 underline hover:decoration-dotted;
+  }
+}

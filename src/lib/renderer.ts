@@ -30,20 +30,20 @@ export default class Renderer {
   constructor(private canvas: HTMLCanvasElement) {}
 
   public async initialize() {
-    const context = this.canvas.getContext("webgpu");
+    const context = this.canvas.getContext('webgpu');
 
     if (!context) {
-      throw new Error("WebGPU not supported");
+      throw new Error('WebGPU not supported');
     }
 
     this.context = context;
 
     const adapter = await navigator.gpu.requestAdapter({
-      powerPreference: "high-performance",
+      powerPreference: 'high-performance'
     });
 
     if (!adapter) {
-      throw new Error("Failed to retrieve GPU adapter");
+      throw new Error('Failed to retrieve GPU adapter');
     }
 
     const device = await adapter.requestDevice();
@@ -51,7 +51,7 @@ export default class Renderer {
 
     this.context.configure({
       device,
-      format,
+      format
     });
 
     this.device = device;
@@ -62,7 +62,7 @@ export default class Renderer {
 
   // For camera movement and potential other shader interactions
   private registerMouseMovement() {
-    document.addEventListener("mousemove", (event) => {
+    document.addEventListener('mousemove', (event) => {
       this.mouseX = event.clientX;
       this.mouseY = event.clientY;
     });
@@ -75,28 +75,28 @@ export default class Renderer {
 
   public createPipeline(shaderModule: GPUShaderModule) {
     this.pipeline = this.device.createRenderPipeline({
-      layout: "auto",
+      layout: 'auto',
       vertex: {
         module: shaderModule,
-        entryPoint: "vertexMain",
+        entryPoint: 'vertexMain',
         buffers: [
           {
             arrayStride: 8, // each vertex is represented using two float32s = 4 bytes * 2
             attributes: [
               {
                 shaderLocation: 0,
-                format: "float32x2",
-                offset: 0,
-              },
-            ],
-          },
-        ],
+                format: 'float32x2',
+                offset: 0
+              }
+            ]
+          }
+        ]
       },
       fragment: {
         module: shaderModule,
-        entryPoint: "fragmentMain",
-        targets: [{ format: this.format }],
-      },
+        entryPoint: 'fragmentMain',
+        targets: [{ format: this.format }]
+      }
     });
 
     this.createUniformBuffer();
@@ -110,14 +110,14 @@ export default class Renderer {
         {
           binding: 0,
           visibility: GPUShaderStage.VERTEX,
-          buffer: { type: "uniform" },
-        },
-      ],
+          buffer: { type: 'uniform' }
+        }
+      ]
     });
 
     this.uniformBuffer = this.device.createBuffer({
       size: GLOBAL_BUFFER_SIZE,
-      usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST,
+      usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST
     });
 
     this.uniformBindGroup = this.device.createBindGroup({
@@ -125,9 +125,9 @@ export default class Renderer {
       entries: [
         {
           binding: 0,
-          resource: { buffer: this.uniformBuffer },
-        },
-      ],
+          resource: { buffer: this.uniformBuffer }
+        }
+      ]
     });
   }
 
@@ -135,7 +135,7 @@ export default class Renderer {
     const buffer = this.device.createBuffer({
       size: data.byteLength,
       usage: GPUBufferUsage.VERTEX | GPUBufferUsage.COPY_DST,
-      mappedAtCreation: true,
+      mappedAtCreation: true
     });
 
     new Float32Array(buffer.getMappedRange()).set(data);
@@ -148,9 +148,7 @@ export default class Renderer {
 
   public createRenderingPass(time: number) {
     if (!this.pipeline || !this.uniformBuffer || !this.uniformBindGroup) {
-      throw new Error(
-        "Pipeline missing, create a pipeline before attempting to render"
-      );
+      throw new Error('Pipeline missing, create a pipeline before attempting to render');
     }
 
     const commandEncoder = this.device.createCommandEncoder();
@@ -163,7 +161,7 @@ export default class Renderer {
       screenHeight,
       this.mouseX / screenWidth,
       this.mouseY / screenHeight,
-      time / 1000, // ms to seconds
+      time / 1000 // ms to seconds
     ]);
 
     this.device.queue.writeBuffer(
@@ -178,10 +176,10 @@ export default class Renderer {
       colorAttachments: [
         {
           view: this.context.getCurrentTexture().createView(),
-          loadOp: "clear",
-          storeOp: "store",
-        },
-      ],
+          loadOp: 'clear',
+          storeOp: 'store'
+        }
+      ]
     });
 
     passEncoder.setPipeline(this.pipeline);
