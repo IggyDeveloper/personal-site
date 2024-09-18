@@ -1,4 +1,6 @@
 <script lang="ts">
+  import Metadata from '$lib/components/metadata.svelte';
+
   const MESSAGE_DELAY_MS = 1500;
   const FLICKER_DELAY_MS = 100;
 
@@ -33,6 +35,8 @@
 
   addMessageRecursive(0);
 </script>
+
+<Metadata title="WAKE UP!!!!!!!" />
 
 <main
   class={`flex flex-col justify-center items-center h-screen ${isBgColorInverted ? 'bg-white' : 'bg-black'}`}

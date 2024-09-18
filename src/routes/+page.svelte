@@ -4,6 +4,8 @@
   import Renderer from '$lib/renderer';
   import shader from '../shaders/raymarching.wgsl';
 
+  import Metadata from '$lib/components/metadata.svelte';
+
   // Pre-baked coordinates to render plane for the raymarching
   // algorithm to use as canvas
   const PLANE_VERTICES = new Float32Array([-1, 1, -1, -1, 1, -1, -1, 1, 1, -1, 1, 1]);
@@ -23,6 +25,8 @@
     });
   });
 </script>
+
+<Metadata title="iggydev" />
 
 <main class="flex flex-col justify-center items-center text-white h-screen bg-black">
   <section class="flex flex-col items-center gap-3 text-center">

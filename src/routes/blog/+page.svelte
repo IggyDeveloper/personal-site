@@ -1,3 +1,9 @@
+<script>
+  import Metadata from '$lib/components/metadata.svelte';
+</script>
+
+<Metadata title="iggydev - blog" />
+
 <main class="flex flex-col gap-3 justify-center items-center text-white h-screen bg-black">
   <h1 class="text-3xl">i said not yet</h1>
   <a href="/" class="flex items-center gap-1 link">
