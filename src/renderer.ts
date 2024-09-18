@@ -68,7 +68,8 @@ export default class Renderer {
     });
   }
 
-  public createShaderModule(code: string) {
+  public async createShaderModule(code: string) {
+    console.log(code);
     return this.device.createShaderModule({ code });
   }
 
@@ -143,12 +144,6 @@ export default class Renderer {
     this.vertexBuffers.push(buffer);
 
     return buffer;
-  }
-
-  public async loadShaderFromFile(url: string) {
-    const fileContent = await fetch(url);
-    const code = await fileContent.text();
-    return this.device.createShaderModule({ code });
   }
 
   public createRenderingPass(time: number) {

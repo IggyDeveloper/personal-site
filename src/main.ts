@@ -1,4 +1,6 @@
 import Renderer from "./renderer";
+import "./style.css";
+import shader from "./raymarch-shader.wgsl";
 
 // Pre-baked coordinates to render plane for the raymarching
 // algorithm to use as canvas
@@ -12,9 +14,8 @@ const renderer = new Renderer(canvas);
 renderer.initialize().then(async () => {
   renderer.createVertexBuffer(PLANE_VERTICES);
 
-  const shaderModule = await renderer.loadShaderFromFile(
-    "/src/raymarch-shader.wgsl"
-  );
+  const shaderModule = await renderer.createShaderModule(shader);
+  console.log();
 
   renderer.createPipeline(shaderModule);
   requestAnimationFrame((time) => renderer.createRenderingPass(time));
