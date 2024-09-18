@@ -16,6 +16,7 @@
   const playBgEffectRecursive = (index: number) => {
     if (index > 10) {
       window.location.href = '/';
+      return;
     }
 
     isBgColorInverted = !isBgColorInverted;
