@@ -40,7 +40,7 @@
 <Metadata title="WAKE UP!!!!!!!" />
 
 <main
-  class={`flex flex-col justify-center items-center h-screen ${isBgColorInverted ? 'bg-white' : 'bg-black'}`}
+  class={`flex flex-col justify-center items-center text-center px-2 h-screen ${isBgColorInverted ? 'bg-white' : 'bg-black'}`}
 >
   {#each visibleMessages as message}
     <p class={isBgColorInverted ? 'text-black' : 'text-white'}>{message}</p>
