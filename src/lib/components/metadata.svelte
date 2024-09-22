@@ -1,5 +1,5 @@
 <script>
-  export let title = 'default title for page';
+  export let title = 'iggydev'; // default title
 </script>
 
 <svelte:head>
